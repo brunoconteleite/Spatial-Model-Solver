@@ -12,7 +12,6 @@ from matplotlib import rc
 
 # Setting working directory - start from user (~/) from Mac:
 os.chdir('Dropbox/Research/jm project/')
-
 # Setting rendering of plots to allow for Latex
 rc('font', **{'family':'serif','serif':['Palatino']})
 rc('text', usetex=True)
