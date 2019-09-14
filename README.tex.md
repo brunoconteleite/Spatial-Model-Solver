@@ -12,11 +12,11 @@ P_i &= \bigg( \sum_{j \in S} (w_i \tau_{ij} / A_i)^{1-\sigma} \bigg)^{\frac{1}{1
 \end{align}
 Importantly, (2) and (3) all depend on wages, so that they can be inserted into (1) so to obtain a system of N equations, which can be solved for N wages. To do so as efficient as possible, I build all functions in matrix format so that I can represent the system with a vector of equations that must equal to zero in equilibrium. As of notation, I define circled operations as element-wise ones, i.e. circled dot (slash) for element-wise multiplication (division). Element-wise power is denoted with diamond, and in line dot stands for standard matrix multiplication.
 
-First, I calculate a $N \times 1$ vector of price indexes, given by (3), as
+First, I calculate a $N \times 1$ vector of price indexes, given by \cref{eq:ap3}, as
 \begin{equation}
-\mathbf{P}_{N\times 1} = \bigg[ \{ \mathbf{T}_{N\times N}\diamond (1-\sigma) \} \cdot \{ (\mathbf{w} \oslash \mathbf{A}) \diamond (1-\sigma)\}_{N\times 1} \bigg] \diamond (1/1-\sigma).
+\mathbf{P}_{N\times 1} = \bigg[ \{ \mathbf{T}_{N\times N}\diamond (1-\sigma) \} \cdot \{ (\mathbf{w} \oslash \mathbf{A}) \diamond (1-\sigma)\}_{N\times 1} \bigg] \diamond (1/1-\sigma).	\label{eq:prices_vector}
 \end{equation}
-Note that $\mathbf{w} \oslash \mathbf{A} = [w_1/A_1, w_2/A_2, ...]',$so that the first row of $\mathbf{T} \cdot (\mathbf{w} \oslash \mathbf{A})$ equals $(w_1 / A_1) \times \tau_{11} + ... + (w_N / A_N) \times \tau_{N}$. Thus, by element-wise powering both matrices to 1 minus sigma before mutiplying them and then to 1/(1-sigma after doing so, one obtains $\mathbf{P} = [P_1, ..., P_N]$. The second step consists in calculating the equilibrium allocation of labor. The challenge there is to calculate $\mathbf{\Pi}$, a symmetric matrix of bilateral probabilities $\{ \Pi_{ij} \}_{i,j \in S}$. To do so, I define
+Note that $\mathbf{w} \oslash \mathbf{A} = [w_1/A_1, w_2/A_2, ...]'$, so that the first row of $\mathbf{T} \cdot (\mathbf{w} \oslash \mathbf{A}) =  (w_1 / A_1) \times \tau_{11} + ... + (w_N / A_N) \times \tau_{N}$. Thus, by element-wise powering both matrices to $1-\sigma$ before mutiplying them and then to $1/1-\sigma$ after doing so, one obtains $\mathbf{P} = [P_1, ..., P_N]$. The second step consists in calculating the equilibrium allocation of labor. The challenge there is to calculate $\mathbf{\Pi}$, a symmetric matrix of bilateral probabilities $\{ \Pi_{ij} \}_{i,j \in S}$. To do so, I define
 \begin{align*}
 \phi_{N \times 1} &= \{\mathbf{w} \oslash \mathbf{P} \diamond \theta \} \odot u_{N \times 1}, \quad \text{and} \\
 \Phi_{N \times 1} &= [\mathbf{M}_{N \times N} \diamond (-\theta) ] \cdot \phi.
